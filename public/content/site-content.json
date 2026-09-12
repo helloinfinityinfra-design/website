@@ -1,0 +1,42 @@
+{
+  "brand": {
+    "name": "INFINITY",
+    "accent": "INFRA",
+    "description": "The largest construction and home inspection company in Nepal, committed to quality, safety, and modern designs.",
+    "copyrightName": "Infinity Construct Pvt.Ltd.",
+    "designer": "Supresh Chalise"
+  },
+  "navigation": [
+    { "name": "Home", "href": "#home", "isRoute": false },
+    { "name": "About Us", "href": "#about", "isRoute": false },
+    { "name": "Services", "href": "#services", "isRoute": false },
+    { "name": "Construction", "href": "#construction", "isRoute": false },
+    { "name": "Blogs & Vlogs", "href": "/blogs", "isRoute": true },
+    { "name": "Book Consult", "href": "#contact", "isRoute": false }
+  ],
+  "services": [
+    { "title": "Home Inspection", "description": "Detailed structural and safety audit by certified engineers.", "icon": "ShieldCheck", "color": "#1C2421" },
+    { "title": "Modern Construction", "description": "Premium building services with modern architectural designs.", "icon": "Home", "color": "#C88A3D" },
+    { "title": "Interior Renovation", "description": "Give your old home a fresh and premium modern look.", "icon": "Paintbrush", "color": "#1C2421" },
+    { "title": "Architectural Design", "description": "Custom 2D/3D floor plans and 3D architectural renders.", "icon": "Ruler", "color": "#C88A3D" },
+    { "title": "Structural Design", "description": "Ensuring your building is safe and earthquake resistant.", "icon": "Hammer", "color": "#1C2421" },
+    { "title": "Plumbing & Electrical", "description": "Professional mechanical and electrical system layouts.", "icon": "Zap", "color": "#C88A3D" }
+  ],
+  "team": [
+    { "name": "Shreedhar Chalise", "role": "Founder & CEO", "image": "/shreedhar.png" },
+    { "name": "Sagar Poudel", "role": "Founder & CEO", "image": "/Sagar.jpg" },
+    { "name": "Nisha Shrestha", "role": "Project Manager", "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400" },
+    { "name": "Prabesh Thapa", "role": "Civil Engineer", "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400" }
+  ],
+  "testimonials": [
+    { "id": 1, "name": "Ramesh Adhikari", "role": "Homeowner, Budhanilkantha", "rating": 5, "text": "Infinity Construction completed our home right on schedule. Their engineering team is extremely professional and detail-oriented. The earthquake-resistant shear wall construction gives us absolute peace of mind.", "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200" },
+    { "id": 2, "name": "Sushma Shrestha", "role": "CEO, Creative Spaces", "rating": 5, "text": "The interior renovation of our corporate offices in Lalitpur exceeded all expectations. Exceptional craftsmanship, premium material selection, and modern aesthetic design. Highly recommended!", "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200" },
+    { "id": 3, "name": "Dr. Sameer Thapa", "role": "Duplex Penthouse Owner, Jhamsikhel", "rating": 5, "text": "A highly reliable construction and renovation partner in Nepal. Transparent billing, structural integrity audits, and no hidden charges. They walk you through every stage of construction.", "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200" }
+  ],
+  "contact": {
+    "address": "H8QC+VM, Chapagaun, Lalitpur 44700, Nepal",
+    "phone": "+977 9801234567",
+    "email": "info@infinityconstruction.com",
+    "mapUrl": "https://maps.google.com/maps?q=H8QC%2BVM%20Chapagaun,%20Nepal&t=&z=16&ie=UTF8&iwloc=&output=embed"
+  }
+}
