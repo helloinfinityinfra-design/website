@@ -40,7 +40,7 @@ const Footer = () => {
             {brand.description}
           </p>
           <div className="social-links" style={{ display: 'flex', gap: '1rem' }}>
-            <a href="https://www.facebook.com/profile.php?id=61594576174807" className="social-link-item"><FaFacebook size={18} /></a>
+            <a href="https://www.facebook.com/profile.php?id=61594576174807" target="_blank" rel="noopener noreferrer" className="social-link-item"><FaFacebook size={18} /></a>
             <a href="#" className="social-link-item"><FaInstagram size={18} /></a>
             <a href="#" className="social-link-item"><FaLinkedin size={18} /></a>
             <a href="#" className="social-link-item"><FaXTwitter size={18} /></a>
