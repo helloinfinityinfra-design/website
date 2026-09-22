@@ -103,7 +103,7 @@ export const BLOG_POSTS = [
       },
       {
         type: 'text',
-        text: 'The NBC classifies Nepal into seismic zones and prescribes minimum design requirements. Key NBC standards our projects follow include NBC 105 (Seismic Design of Buildings), NBC 202 (Plain and Reinforced Concrete), and NBC 203 (RCC Framed Buildings). All our structural drawings are prepared by NEC-registered engineers and submitted for municipal approval.',
+        text: 'The NBC classifies Nepal into seismic zones and prescribes minimum design requirements. Key NBC standards our projects follow include NBC 105 (Seismic Design of Buildings), NBC 202 (Plain and Reinforced Concrete), and NBC 203 (RCC Framed Buildings). All our structural drawings are prepared by OCR-registered engineers and submitted for municipal approval.',
       },
       {
         type: 'heading',
@@ -122,7 +122,7 @@ export const BLOG_POSTS = [
       },
       {
         type: 'callout',
-        text: '💡 Pro Tip: Always hire an NEC-registered civil engineer to supervise your construction. A good engineer on-site can prevent costly and dangerous mistakes.',
+        text: '💡 Pro Tip: Always hire an OCR-registered civil engineer to supervise your construction. A good engineer on-site can prevent costly and dangerous mistakes.',
       },
       {
         type: 'heading',
@@ -358,7 +358,7 @@ export const BLOG_POSTS = [
         type: 'list',
         items: [
           '⭐⭐⭐ **Premium:** Ultratech, Ambuja (Indian brands) — highest strength, ideal for structural work',
-          '⭐⭐⭐ **Premium Local:** Shivam Cement — Nepal\'s top local brand, NEC certified',
+          '⭐⭐⭐ **Premium Local:** Shivam Cement — Nepal\'s top local brand, OCR certified',
           '⭐⭐ **Standard:** Hetauda Cement — good quality, widely available',
           '⭐⭐ **Standard:** Udayapur Cement — reliable for general construction',
           '❌ **Avoid:** Unknown or uncertified brands — risk of substandard quality',
