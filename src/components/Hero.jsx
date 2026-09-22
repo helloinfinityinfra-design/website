@@ -120,11 +120,11 @@ const Hero = () => {
             </motion.div>
           </AnimatePresence>
           
-          <h1 className="hero-title" style={{ minHeight: '160px' }}>
+          <h1 className="hero-title" style={{ fontFamily: 'var(--font-heading)', minHeight: '160px' }}>
             The Largest <span className="highlight">Construction</span> & Engineering Hub in Nepal
           </h1>
           
-          <p className="hero-description" style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.82)', marginBottom: '2.5rem', lineHeight: '1.6' }}>
+          <p className="hero-description" style={{ fontFamily: 'var(--font-body)', fontSize: '1.15rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
             We provide professional home inspection, retrofitting, interior renovation, and construction services with certified engineers and quality assurance.
           </p>
           
@@ -132,23 +132,29 @@ const Hero = () => {
             <button className="btn btn-primary" onClick={handleConsultClick}>
               Consult Now <ChevronRight size={20} />
             </button>
-            <button className="btn btn-outline" onClick={handleProjectsClick}>
+            <button className="btn btn-outline-gold" onClick={handleProjectsClick}>
               See Projects
             </button>
           </div>
 
-          <div className="hero-stats" style={{ display: 'flex', gap: '3rem', borderTop: '1px solid var(--border-color)', paddingTop: '2rem' }}>
+          <div className="hero-stats" style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.15)', paddingTop: '2rem' }}>
             <div className="stat-item">
-              <span className="stat-number" style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff' }}>
+              <span className="stat-number" style={{ fontSize: '2.2rem', fontWeight: 800, color: '#f4c778', fontFamily: 'var(--font-heading)' }}>
                 <AnimatedCounter value="500+" />
               </span>
-              <span className="stat-label" style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500, display: 'block' }}>Projects Completed</span>
+              <span className="stat-label" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.88rem', fontWeight: 500, display: 'block' }}>Engineered Structures</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number" style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff' }}>
+              <span className="stat-number" style={{ fontSize: '2.2rem', fontWeight: 800, color: '#ffffff', fontFamily: 'var(--font-heading)' }}>
                 <AnimatedCounter value="50+" />
               </span>
-              <span className="stat-label" style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500, display: 'block' }}>Expert Engineers</span>
+              <span className="stat-label" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.88rem', fontWeight: 500, display: 'block' }}>OCR Certified Engineers</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number" style={{ fontSize: '2.2rem', fontWeight: 800, color: '#f4c778', fontFamily: 'var(--font-heading)' }}>
+                <AnimatedCounter value="9+" />
+              </span>
+              <span className="stat-label" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.88rem', fontWeight: 500, display: 'block' }}>Years Industry Leadership</span>
             </div>
           </div>
         </motion.div>
