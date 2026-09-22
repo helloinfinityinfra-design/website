@@ -36,8 +36,22 @@ const ProjectsGallery = () => {
     <section id="construction" className="section content-section" style={{ background: 'var(--bg-light)' }}>
       <div className="container">
         <div className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="title">Our Featured Projects</h2>
-          <p className="subtitle">Explore our premium residential, commercial, and renovation projects across Nepal.</p>
+          <span className="section-eyebrow" style={{
+            display: 'inline-block',
+            color: 'var(--secondary)',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            letterSpacing: '1.8px',
+            textTransform: 'uppercase',
+            marginBottom: '0.75rem',
+            background: 'rgba(186, 117, 23, 0.1)',
+            padding: '4px 14px',
+            borderRadius: '20px'
+          }}>
+            03 // PORTFOLIO & CASE STUDIES
+          </span>
+          <h2 className="title">Our Featured Engineered Projects</h2>
+          <p className="subtitle">Explore our benchmark residential, commercial, and structural renovation projects across Nepal.</p>
         </div>
 
         {/* Categories Filter Tabs */}
