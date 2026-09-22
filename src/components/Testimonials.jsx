@@ -56,9 +56,24 @@ const Testimonials = () => {
       />
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="title" style={{ color: 'var(--bg-white)' }}>Client Testimonials</h2>
-          <p className="subtitle" style={{ color: 'rgba(255,255,255,0.7)' }}>What our clients say about our services and build quality.</p>
+        <div className="section-header" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <span className="section-eyebrow" style={{
+            display: 'inline-block',
+            color: '#f4c778',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            letterSpacing: '1.8px',
+            textTransform: 'uppercase',
+            marginBottom: '0.75rem',
+            background: 'rgba(244, 199, 120, 0.12)',
+            padding: '4px 14px',
+            borderRadius: '20px',
+            border: '1px solid rgba(244, 199, 120, 0.25)'
+          }}>
+            04 // CLIENT REVIEWS & VERIFIED FEEDBACK
+          </span>
+          <h2 className="title" style={{ color: 'var(--bg-white)', fontSize: '2.5rem', fontWeight: 800 }}>What Our Clients Say</h2>
+          <p className="subtitle" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem' }}>Real stories from homeowners and business leaders across the Kathmandu Valley.</p>
         </div>
 
         <div style={{
