@@ -251,7 +251,7 @@ const BlogsPage = () => {
 
       {/* ─── Hero Banner ── */}
       <div style={{
-        background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+        background: 'var(--gradient-hero)',
         paddingTop: '8rem', paddingBottom: '4rem', textAlign: 'center',
       }}>
         <motion.div
