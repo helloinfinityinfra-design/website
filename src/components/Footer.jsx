@@ -1,7 +1,8 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import logoImg from '../assets/logo.jpeg';
+import { FaXTwitter } from "react-icons/fa6";
+import logoImg from '../assets/logo1.jpg';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSiteContent } from '../ContentContext';
 
@@ -39,10 +40,10 @@ const Footer = () => {
             {brand.description}
           </p>
           <div className="social-links" style={{ display: 'flex', gap: '1rem' }}>
-            <a href="#" className="social-link-item"><FaFacebook size={18} /></a>
+            <a href="https://www.facebook.com/profile.php?id=61594576174807" className="social-link-item"><FaFacebook size={18} /></a>
             <a href="#" className="social-link-item"><FaInstagram size={18} /></a>
             <a href="#" className="social-link-item"><FaLinkedin size={18} /></a>
-            <a href="#" className="social-link-item"><FaTwitter size={18} /></a>
+            <a href="#" className="social-link-item"><FaXTwitter size={18} /></a>
           </div>
         </div>
 
@@ -112,8 +113,13 @@ const Footer = () => {
           transition: all 0.3s ease;
         }
         .social-link-item:hover {
-          background: var(--secondary);
+          background: var(--primary-hover);
+          color: #f4c778;
           transform: translateY(-3px);
+        }
+        .social-link-item:hover svg {
+          fill: #f4c778;
+          color: #f4c778;
         }
         .footer-links a { color: var(--text-muted); }
         .footer-links a:hover { color: var(--secondary); padding-left: 5px; }
