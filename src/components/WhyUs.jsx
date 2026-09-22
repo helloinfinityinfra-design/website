@@ -80,8 +80,27 @@ const WhyUs = () => {
         
         {/* Left Side: USPS */}
         <div className="why-content">
-          <h2 className="title" style={{ color: 'var(--bg-white)' }}>Why Choose Infinity Construction Pvt. Ltd?</h2>
-          <p className="subtitle" style={{ color: 'rgba(255,255,255,0.7)' }}>We are redefining the construction industry in Nepal with technology and expertise.</p>
+          <span className="section-eyebrow" style={{
+            display: 'inline-block',
+            color: '#f4c778',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            letterSpacing: '1.8px',
+            textTransform: 'uppercase',
+            marginBottom: '0.75rem',
+            background: 'rgba(244, 199, 120, 0.12)',
+            padding: '4px 14px',
+            borderRadius: '20px',
+            border: '1px solid rgba(244, 199, 120, 0.25)'
+          }}>
+            02 // THE INFINITY ENGINEERING STANDARD
+          </span>
+          <h2 className="title" style={{ color: 'var(--bg-white)', fontSize: '2.5rem', fontWeight: 800 }}>
+            Why Engineering Assurance Matters in Nepal
+          </h2>
+          <p className="subtitle" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', lineHeight: 1.7 }}>
+            Building in the Kathmandu Valley requires strict seismic code compliance (NBC 105/202), certified material testing, and zero-compromise structural supervision.
+          </p>
 
           <div className="usp-list" style={{ display: 'grid', gap: '2rem', marginTop: '3rem' }}>
             {usps.map((usp, index) => (
