@@ -39,7 +39,7 @@ function Home() {
     <div className="app-wrapper">
       <Navbar />
 
-      <main style={{ paddingTop: '80px' }}> {/* Prevents layout shift under fixed navbar */}
+      <main style={{ paddingTop: '110px' }}> {/* Prevents layout shift under fixed header */}
         {/* Navbar points to #home */}
         <section id="home" className="content-section">
           <Hero />
@@ -65,8 +65,22 @@ function Home() {
         {/* Navbar points to #blogs */}
         <section id="blogs" className="section bg-light content-section">
           <div className="container text-center">
-            <h2 className="title">Latest Construction Blogs & Vlogs</h2>
-            <p className="subtitle">Stay updated with the latest trends, guides, and video walkthroughs in Nepal's construction industry.</p>
+            <span className="section-eyebrow" style={{
+              display: 'inline-block',
+              color: 'var(--secondary)',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              letterSpacing: '1.8px',
+              textTransform: 'uppercase',
+              marginBottom: '0.75rem',
+              background: 'rgba(186, 117, 23, 0.1)',
+              padding: '4px 14px',
+              borderRadius: '20px'
+            }}>
+              06 // INDUSTRY INSIGHTS & ENGINEERING GUIDES
+            </span>
+            <h2 className="title" style={{ fontSize: '2.5rem', fontWeight: 800 }}>Nepal Construction Guides & Vlogs</h2>
+            <p className="subtitle">Expert engineering insights, cost breakdown guides, and video walkthroughs in Kathmandu.</p>
             
             <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
               {latestPosts.map(post => (
