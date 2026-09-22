@@ -55,8 +55,13 @@ const BlogDetail = () => {
     <div style={{ minHeight: '100vh', background: 'var(--bg-white)' }}>
       <Navbar />
 
-      {/* Main Container */}
-      <main style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+      {/* ─── Hero Banner for Blog Detail ── */}
+      <div style={{
+        background: 'var(--gradient-hero)',
+        paddingTop: '8rem',
+        paddingBottom: '3.5rem',
+        color: '#ffffff',
+      }}>
         <div className="container" style={{ maxWidth: '900px' }}>
           {/* Back Button */}
           <Link 
@@ -65,21 +70,21 @@ const BlogDetail = () => {
               display: 'inline-flex', 
               alignItems: 'center', 
               gap: '8px', 
-              color: 'var(--text-muted)', 
+              color: 'rgba(255, 255, 255, 0.85)', 
               textDecoration: 'none', 
               fontWeight: 600, 
               fontSize: '0.95rem',
-              marginBottom: '2rem',
+              marginBottom: '1.5rem',
               transition: 'color 0.2s ease'
             }}
-            onMouseOver={e => e.currentTarget.style.color = 'var(--primary)'}
-            onMouseOut={e => e.currentTarget.style.color = 'var(--text-muted)'}
+            onMouseOver={e => e.currentTarget.style.color = '#ffffff'}
+            onMouseOut={e => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)'}
           >
             <ArrowLeft size={18} /> Back to Blogs & Vlogs
           </Link>
 
           {/* Meta Category & Date */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
             <span style={{
               background: post.categoryColor,
               color: 'var(--bg-white)',
@@ -92,24 +97,30 @@ const BlogDetail = () => {
             }}>
               {post.category}
             </span>
-            <span style={{ fontSize: '0.88rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <span style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <Calendar size={14} /> {post.date}
             </span>
-            <span style={{ fontSize: '0.88rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <span style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <Clock size={14} /> {post.readTime}
             </span>
           </div>
 
           {/* Title */}
           <h1 style={{ 
-            fontSize: 'clamp(2rem, 4vw, 3rem)', 
+            fontSize: 'clamp(2rem, 4vw, 2.75rem)', 
             fontWeight: 800, 
-            color: 'var(--primary)', 
+            color: '#ffffff', 
             lineHeight: 1.25, 
-            marginBottom: '2rem' 
+            margin: 0 
           }}>
             {post.title}
           </h1>
+        </div>
+      </div>
+
+      {/* Main Content Container */}
+      <main style={{ paddingTop: '3rem', paddingBottom: '6rem' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
 
           {/* Author info & Share */}
           <div style={{ 
