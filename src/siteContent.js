@@ -1,4 +1,4 @@
-﻿import sagarPhoto from './assets/Sagar.jpg';
+import sagarPhoto from './assets/Sagar.jpg';
 import shreedharPhoto from './assets/shreedhar.png';
 
 export const SITE_CONTENT = {
@@ -23,7 +23,12 @@ export const SITE_CONTENT = {
     { title: 'Interior Renovation', description: 'Give your old home a fresh and premium modern look.', icon: 'Paintbrush', color: '#1C2421' },
     { title: 'Architectural Design', description: 'Custom 2D/3D floor plans and 3D architectural renders.', icon: 'Ruler', color: '#C88A3D' },
     { title: 'Structural Design', description: 'Ensuring your building is safe and earthquake resistant.', icon: 'Hammer', color: '#1C2421' },
-    { title: 'Plumbing & Electrical', description: 'Professional mechanical and electrical system layouts.', icon: 'Zap', color: '#C88A3D' }
+   {
+  title: 'Valuation',
+  description: 'Professional property valuation and assessment services.',
+  icon: 'calculator',
+  color: '#C88A3D'
+}
   ],
   team: [
     { name: 'Shreedhar Chalise', role: 'Founder & CEO', image: shreedharPhoto },
@@ -38,8 +43,8 @@ export const SITE_CONTENT = {
   ],
   contact: {
     address: 'H8QC+VM, Chapagaun, Lalitpur 44700, Nepal',
-    phone: '+977 9801234567',
-    email: 'info@infinityconstruction.com',
+    phone: '+977 981-2345678',
+    email: 'hello.infinityinfra@gmail.com',
     mapUrl: 'https://maps.google.com/maps?q=H8QC%2BVM%20Chapagaun,%20Nepal&t=&z=16&ie=UTF8&iwloc=&output=embed'
   }
 };
