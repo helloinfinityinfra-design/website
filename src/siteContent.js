@@ -23,12 +23,7 @@ export const SITE_CONTENT = {
     { title: 'Interior Renovation', description: 'Give your old home a fresh and premium modern look.', icon: 'Paintbrush', color: '#1C2421' },
     { title: 'Architectural Design', description: 'Custom 2D/3D floor plans and 3D architectural renders.', icon: 'Ruler', color: '#C88A3D' },
     { title: 'Structural Design', description: 'Ensuring your building is safe and earthquake resistant.', icon: 'Hammer', color: '#1C2421' },
-   {
-  title: 'Valuation',
-  description: 'Professional property valuation and assessment services.',
-  icon: 'calculator',
-  color: '#C88A3D'
-}
+   {title: 'Valuation',description: 'Professional property valuation and assessment services.', icon: 'calculator',color: '#C88A3D'}
   ],
   team: [
     { name: 'Shreedhar Chalise', role: 'Founder & CEO', image: shreedharPhoto },
