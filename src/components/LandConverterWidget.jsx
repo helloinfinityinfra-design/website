@@ -165,8 +165,152 @@ Calculated via Infinity Construction Land Converter.`;
 
   return (
     <>
+      {/* ── Responsive CSS Styles ────────────────────────────────────────── */}
+      <style>{`
+        .land-converter-trigger {
+          position: fixed;
+          bottom: 2rem;
+          left: 2rem;
+          z-index: 9998;
+        }
+
+        .land-converter-drawer {
+          position: fixed;
+          bottom: 5.5rem;
+          left: 2rem;
+          width: 410px;
+          max-width: calc(100vw - 2.5rem);
+          max-height: 82vh;
+          background: #0d0e1c;
+          border-radius: 24px;
+          box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5), 0 0 25px rgba(186, 117, 23, 0.25);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          font-family: 'Inter', sans-serif;
+          z-index: 9999;
+          color: #FFFFFF;
+        }
+
+        .land-converter-btn-label {
+          display: inline-block;
+        }
+
+        .land-converter-badge {
+          display: inline-block;
+        }
+
+        .terai-inputs-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 10px;
+        }
+
+        /* ── 640px and below ── */
+        @media (max-width: 640px) {
+          .land-converter-trigger {
+            bottom: 1.25rem;
+            left: 1rem;
+          }
+
+          .land-converter-drawer {
+            left: 0.75rem;
+            right: 0.75rem;
+            bottom: 4.8rem;
+            width: auto;
+            max-width: calc(100vw - 1.5rem);
+            max-height: 84vh;
+            border-radius: 20px;
+          }
+
+          .land-converter-badge {
+            display: none;
+          }
+        }
+
+        /* ── 425px and below (small mobile) ── */
+        @media (max-width: 425px) {
+          .land-converter-trigger {
+            bottom: 1rem;
+            left: 0.75rem;
+          }
+
+          /* Button: compact — icon only or short label */
+          .land-converter-btn-label {
+            font-size: 0.75rem;
+          }
+
+          .land-converter-badge {
+            display: none;
+          }
+
+          /* Drawer: stretch edge-to-edge with a small margin */
+          .land-converter-drawer {
+            left: 0.5rem;
+            right: 0.5rem;
+            bottom: 4.5rem;
+            width: auto;
+            max-width: calc(100vw - 1rem);
+            max-height: 88vh;
+            border-radius: 18px;
+          }
+
+          /* Terai inputs: 2-column */
+          .terai-inputs-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+          }
+
+          /* Result rows: stack label & value vertically */
+          .lcd-breakdown-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 2px;
+          }
+
+          /* Primary result cards: full-width stack */
+          .lcd-primary-cards {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* Mode tabs: smaller font */
+          .lcd-mode-tabs button {
+            font-size: 0.62rem !important;
+            padding: 7px 2px !important;
+          }
+
+          /* Preset chips: allow wrapping */
+          .lcd-presets {
+            flex-wrap: wrap;
+            gap: 4px;
+          }
+
+          /* Input fields: comfortable touch targets */
+          .lcd-input {
+            padding: 9px 10px !important;
+            font-size: 0.85rem !important;
+          }
+
+          /* Header: tighten padding */
+          .lcd-header {
+            padding: 12px 14px !important;
+          }
+
+          /* Body: tighten padding */
+          .lcd-body {
+            padding: 10px !important;
+          }
+
+          /* Conversion result card: tighter */
+          .lcd-result-card {
+            padding: 10px !important;
+          }
+        }
+      `}</style>
+
       {/* ── Floating Launcher Button (Bottom Left) ───────────────────────── */}
-      <div style={{ position: 'fixed', bottom: '2rem', left: '2rem', zIndex: 9998 }}>
+      <div className="land-converter-trigger">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.05 }}
@@ -174,10 +318,10 @@ Calculated via Infinity Construction Land Converter.`;
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 10,
+            gap: 8,
             background: 'linear-gradient(135deg, #0C447C 0%, #BA7517 100%)',
             color: '#FFFFFF',
-            padding: '12px 18px',
+            padding: '12px 16px',
             borderRadius: '50px',
             boxShadow: '0 10px 30px rgba(12, 68, 124, 0.4), 0 0 15px rgba(186, 117, 23, 0.3)',
             border: '1.5px solid rgba(255, 255, 255, 0.2)',
@@ -192,12 +336,13 @@ Calculated via Infinity Construction Land Converter.`;
             width: 32, height: 32, borderRadius: '50%',
             background: 'rgba(255,255,255,0.15)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: 'inset 0 0 6px rgba(255,255,255,0.2)'
+            boxShadow: 'inset 0 0 6px rgba(255,255,255,0.2)',
+            flexShrink: 0
           }}>
             {isOpen ? <X size={18} color="#FFFFFF" /> : <Calculator size={18} color="#F4C778" />}
           </div>
-          <span>Land Converter</span>
-          <span style={{
+          <span className="land-converter-btn-label">Land Converter</span>
+          <span className="land-converter-badge" style={{
             background: 'rgba(244, 199, 120, 0.25)',
             color: '#F4C778',
             fontSize: '0.68rem',
@@ -216,54 +361,38 @@ Calculated via Infinity Construction Land Converter.`;
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            className="land-converter-drawer"
             initial={{ opacity: 0, y: 35, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 35, scale: 0.92 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            style={{
-              position: 'fixed',
-              bottom: '5.5rem',
-              left: '2rem',
-              width: '410px',
-              maxWidth: 'calc(100vw - 2.5rem)',
-              maxHeight: '82vh',
-              background: '#0d0e1c',
-              borderRadius: 24,
-              boxShadow: '0 24px 70px rgba(0, 0, 0, 0.5), 0 0 25px rgba(186, 117, 23, 0.25)',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'hidden',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              fontFamily: "'Inter', sans-serif",
-              zIndex: 9999,
-              color: '#FFFFFF'
-            }}
           >
             {/* ── Header ── */}
-            <div style={{
+            <div className="lcd-header" style={{
               background: 'linear-gradient(135deg, #042C53 0%, #0C447C 60%, #16172e 100%)',
-              padding: '16px 20px',
+              padding: '14px 18px',
               borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexShrink: 0
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div style={{
-                  width: 40, height: 40, borderRadius: '50%',
+                  width: 36, height: 36, borderRadius: '50%',
                   background: 'linear-gradient(135deg, rgba(186,117,23,0.3) 0%, rgba(12,68,124,0.4) 100%)',
                   border: '1px solid #BA7517',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  boxShadow: '0 4px 12px rgba(186,117,23,0.3)'
+                  boxShadow: '0 4px 12px rgba(186,117,23,0.3)',
+                  flexShrink: 0
                 }}>
-                  <Ruler size={20} color="#F4C778" />
+                  <Ruler size={18} color="#F4C778" />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '0.98rem', fontWeight: 800, margin: 0, color: '#FFFFFF', letterSpacing: '-0.2px' }}>
+                  <h3 style={{ fontSize: '0.92rem', fontWeight: 800, margin: 0, color: '#FFFFFF', letterSpacing: '-0.2px' }}>
                     Nepali Land Unit Converter
                   </h3>
-                  <p style={{ fontSize: '0.7rem', color: '#BA7517', margin: '2px 0 0 0', fontWeight: 600 }}>
+                  <p style={{ fontSize: '0.68rem', color: '#BA7517', margin: '2px 0 0 0', fontWeight: 600 }}>
                     Ropani–Aana & Bigha–Kattha System
                   </p>
                 </div>
@@ -296,13 +425,13 @@ Calculated via Infinity Construction Land Converter.`;
             </div>
 
             {/* ── Scrollable Body ── */}
-            <div style={{ flex: 1, padding: 18, overflowY: 'auto', scrollbarWidth: 'thin' }}>
+            <div className="lcd-body" style={{ flex: 1, padding: 14, overflowY: 'auto', scrollbarWidth: 'thin' }}>
               
               {/* Mode Tabs */}
-              <div style={{
-                display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6,
+              <div className="lcd-mode-tabs" style={{
+                display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 4,
                 background: 'rgba(255,255,255,0.04)', padding: 4, borderRadius: 14,
-                border: '1px solid rgba(255,255,255,0.06)', marginBottom: 16
+                border: '1px solid rgba(255,255,255,0.06)', marginBottom: 14
               }}>
                 {[
                   { id: 'hilly', label: '🏔️ Hill (Ropani)' },
@@ -313,16 +442,19 @@ Calculated via Infinity Construction Land Converter.`;
                     key={tab.id}
                     onClick={() => setMode(tab.id)}
                     style={{
-                      padding: '8px 4px',
+                      padding: '8px 2px',
                       borderRadius: 10,
-                      fontSize: '0.74rem',
+                      fontSize: '0.7rem',
                       fontWeight: mode === tab.id ? 700 : 500,
                       background: mode === tab.id ? 'linear-gradient(135deg, #0C447C 0%, #BA7517 100%)' : 'transparent',
                       color: mode === tab.id ? '#FFFFFF' : 'rgba(255,255,255,0.6)',
                       border: 'none',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
-                      boxShadow: mode === tab.id ? '0 4px 12px rgba(12,68,124,0.3)' : 'none'
+                      boxShadow: mode === tab.id ? '0 4px 12px rgba(12,68,124,0.3)' : 'none',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
                     }}
                   >
                     {tab.label}
@@ -331,11 +463,11 @@ Calculated via Infinity Construction Land Converter.`;
               </div>
 
               {/* Presets Bar */}
-              <div style={{ marginBottom: 16 }}>
-                <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '1px', color: '#BA7517', fontWeight: 700, display: 'block', marginBottom: 6 }}>
+              <div style={{ marginBottom: 14 }}>
+                <span style={{ fontSize: '0.66rem', textTransform: 'uppercase', letterSpacing: '0.8px', color: '#BA7517', fontWeight: 700, display: 'block', marginBottom: 6 }}>
                   ⚡ Quick Presets:
                 </span>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                <div className="lcd-presets" style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
                   {PRESETS.map((p, idx) => (
                     <button
                       key={idx}
@@ -344,9 +476,9 @@ Calculated via Infinity Construction Land Converter.`;
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
                         color: 'rgba(255,255,255,0.85)',
-                        padding: '4px 10px',
+                        padding: '4px 9px',
                         borderRadius: 20,
-                        fontSize: '0.72rem',
+                        fontSize: '0.7rem',
                         fontWeight: 600,
                         cursor: 'pointer',
                         transition: 'all 0.2s'
@@ -364,18 +496,18 @@ Calculated via Infinity Construction Land Converter.`;
               <div style={{
                 background: 'rgba(255,255,255,0.03)',
                 borderRadius: 16,
-                padding: 16,
+                padding: 14,
                 border: '1px solid rgba(255,255,255,0.06)',
-                marginBottom: 16
+                marginBottom: 14
               }}>
                 {mode === 'hilly' && (
                   <div>
-                    <span style={{ fontSize: '0.78rem', color: '#F4C778', fontWeight: 700, display: 'block', marginBottom: 12 }}>
+                    <span style={{ fontSize: '0.75rem', color: '#F4C778', fontWeight: 700, display: 'block', marginBottom: 10 }}>
                       Hilly Measurement System (पहाडी भेग):
                     </span>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Ropani (रोपनी)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Ropani (रोपनी)</label>
                         <input
                           type="number"
                           min="0"
@@ -383,12 +515,12 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setRopani(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 12px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Aana (आना)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Aana (आना)</label>
                         <input
                           type="number"
                           min="0"
@@ -396,12 +528,12 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setAana(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 12px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Paisa (पैसा)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Paisa (पैसा)</label>
                         <input
                           type="number"
                           min="0"
@@ -409,12 +541,12 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setPaisa(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 12px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Daam (दाम)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Daam (दाम)</label>
                         <input
                           type="number"
                           min="0"
@@ -423,7 +555,7 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setDaam(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 12px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
@@ -433,12 +565,12 @@ Calculated via Infinity Construction Land Converter.`;
 
                 {mode === 'terai' && (
                   <div>
-                    <span style={{ fontSize: '0.78rem', color: '#F4C778', fontWeight: 700, display: 'block', marginBottom: 12 }}>
+                    <span style={{ fontSize: '0.75rem', color: '#F4C778', fontWeight: 700, display: 'block', marginBottom: 10 }}>
                       Terai Measurement System (तराई भेग):
                     </span>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+                    <div className="terai-inputs-grid">
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Bigha (बिघा)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Bigha (बिघा)</label>
                         <input
                           type="number"
                           min="0"
@@ -446,12 +578,12 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setBigha(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Kattha (कट्ठा)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Kattha (कट्ठा)</label>
                         <input
                           type="number"
                           min="0"
@@ -459,12 +591,12 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setKattha(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Dhur (धूर)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Dhur (धूर)</label>
                         <input
                           type="number"
                           min="0"
@@ -473,7 +605,7 @@ Calculated via Infinity Construction Land Converter.`;
                           onChange={e => setDhur(e.target.value)}
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
@@ -483,12 +615,12 @@ Calculated via Infinity Construction Land Converter.`;
 
                 {mode === 'sqft' && (
                   <div>
-                    <span style={{ fontSize: '0.78rem', color: '#F4C778', fontWeight: 700, display: 'block', marginBottom: 12 }}>
+                    <span style={{ fontSize: '0.75rem', color: '#F4C778', fontWeight: 700, display: 'block', marginBottom: 10 }}>
                       Standard Metric / Imperial Direct Input:
                     </span>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Square Feet (sq. ft)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Square Feet (sq. ft)</label>
                         <input
                           type="number"
                           min="0"
@@ -497,12 +629,12 @@ Calculated via Infinity Construction Land Converter.`;
                           placeholder="e.g. 5476"
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 12px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Square Meters (sq. m)</label>
+                        <label style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 4 }}>Square Meters (sq. m)</label>
                         <input
                           type="number"
                           min="0"
@@ -511,7 +643,7 @@ Calculated via Infinity Construction Land Converter.`;
                           placeholder="e.g. 508.74"
                           style={{
                             width: '100%', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.12)',
-                            borderRadius: 10, padding: '8px 12px', color: '#FFF', fontSize: '0.92rem', fontWeight: 700, outline: 'none'
+                            borderRadius: 10, padding: '8px 10px', color: '#FFF', fontSize: '0.88rem', fontWeight: 700, outline: 'none'
                           }}
                         />
                       </div>
@@ -521,16 +653,16 @@ Calculated via Infinity Construction Land Converter.`;
               </div>
 
               {/* ── Conversion Results Card ── */}
-              <div style={{
+              <div className="lcd-result-card" style={{
                 background: 'linear-gradient(135deg, rgba(12,68,124,0.3) 0%, rgba(186,117,23,0.15) 100%)',
-                borderRadius: 18,
-                padding: 16,
+                borderRadius: 16,
+                padding: 14,
                 border: '1px solid rgba(244, 199, 120, 0.25)',
-                marginBottom: 16,
+                marginBottom: 14,
                 boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
               }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', color: '#F4C778', fontWeight: 800 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                  <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.8px', color: '#F4C778', fontWeight: 800 }}>
                     Conversion Breakdown
                   </span>
                   <button
@@ -540,7 +672,7 @@ Calculated via Infinity Construction Land Converter.`;
                       background: copied ? 'rgba(74,222,128,0.2)' : 'rgba(255,255,255,0.08)',
                       border: copied ? '1px solid #4ade80' : '1px solid rgba(255,255,255,0.15)',
                       color: copied ? '#4ade80' : '#FFFFFF',
-                      fontSize: '0.7rem', fontWeight: 700, padding: '3px 10px', borderRadius: 20, cursor: 'pointer'
+                      fontSize: '0.68rem', fontWeight: 700, padding: '3px 9px', borderRadius: 20, cursor: 'pointer'
                     }}
                   >
                     {copied ? <Check size={11} /> : <Copy size={11} />}
@@ -549,44 +681,44 @@ Calculated via Infinity Construction Land Converter.`;
                 </div>
 
                 {/* Primary Sq Ft & Sq M Cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
-                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 12px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
-                    <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', display: 'block' }}>Total Sq. Feet</span>
-                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF' }}>
+                <div className="lcd-primary-cards" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 10 }}>
+                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 10px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <span style={{ fontSize: '0.62rem', color: 'rgba(255,255,255,0.5)', display: 'block' }}>Total Sq. Feet</span>
+                    <span style={{ fontSize: '1rem', fontWeight: 800, color: '#FFFFFF' }}>
                       {currentTotalSqFt.toLocaleString('en-IN', { maximumFractionDigits: 2 })}
                     </span>
-                    <span style={{ fontSize: '0.65rem', color: '#F4C778', display: 'block' }}>sq. ft</span>
+                    <span style={{ fontSize: '0.62rem', color: '#F4C778', display: 'block' }}>sq. ft</span>
                   </div>
 
-                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 12px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
-                    <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', display: 'block' }}>Total Sq. Meters</span>
-                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF' }}>
+                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 10px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <span style={{ fontSize: '0.62rem', color: 'rgba(255,255,255,0.5)', display: 'block' }}>Total Sq. Meters</span>
+                    <span style={{ fontSize: '1rem', fontWeight: 800, color: '#FFFFFF' }}>
                       {totalSqMeters}
                     </span>
-                    <span style={{ fontSize: '0.65rem', color: '#F4C778', display: 'block' }}>m²</span>
+                    <span style={{ fontSize: '0.62rem', color: '#F4C778', display: 'block' }}>m²</span>
                   </div>
                 </div>
 
                 {/* Breakdown List */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: '0.8rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: '0.78rem' }}>
                   {/* Hilly notation */}
-                  <div style={{
+                  <div className="lcd-breakdown-row" style={{
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    background: 'rgba(0,0,0,0.25)', padding: '8px 12px', borderRadius: 10
+                    background: 'rgba(0,0,0,0.25)', padding: '7px 10px', borderRadius: 10
                   }}>
                     <span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>🏔️ Hilly (पहाडी):</span>
-                    <span style={{ color: '#F4C778', fontWeight: 800 }}>
+                    <span style={{ color: '#F4C778', fontWeight: 800, fontSize: '0.76rem' }}>
                       {hillyResult.ropani}R - {hillyResult.aana}A - {hillyResult.paisa}P - {hillyResult.daam}D
                     </span>
                   </div>
 
                   {/* Terai notation */}
-                  <div style={{
+                  <div className="lcd-breakdown-row" style={{
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    background: 'rgba(0,0,0,0.25)', padding: '8px 12px', borderRadius: 10
+                    background: 'rgba(0,0,0,0.25)', padding: '7px 10px', borderRadius: 10
                   }}>
                     <span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>🌾 Terai (तराई):</span>
-                    <span style={{ color: '#F4C778', fontWeight: 800 }}>
+                    <span style={{ color: '#F4C778', fontWeight: 800, fontSize: '0.76rem' }}>
                       {teraiResult.bigha}B - {teraiResult.kattha}K - {teraiResult.dhur}Dh
                     </span>
                   </div>
@@ -594,7 +726,7 @@ Calculated via Infinity Construction Land Converter.`;
                   {/* Acres & Hectares */}
                   <div style={{
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '2px 4px', fontSize: '0.72rem', color: 'rgba(255,255,255,0.5)'
+                    padding: '2px 4px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)'
                   }}>
                     <span>Acres: <strong style={{ color: '#FFF' }}>{totalAcres}</strong></span>
                     <span>Hectares: <strong style={{ color: '#FFF' }}>{totalHectares}</strong></span>
@@ -612,10 +744,10 @@ Calculated via Infinity Construction Land Converter.`;
                 <button
                   onClick={() => setShowReference(!showReference)}
                   style={{
-                    width: '100%', padding: '10px 14px',
+                    width: '100%', padding: '10px 12px',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     background: 'transparent', border: 'none', color: '#cbd5e1',
-                    fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer'
+                    fontSize: '0.74rem', fontWeight: 700, cursor: 'pointer'
                   }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -625,28 +757,28 @@ Calculated via Infinity Construction Land Converter.`;
                 </button>
 
                 {showReference && (
-                  <div style={{ padding: '0 14px 14px 14px', fontSize: '0.72rem', color: 'rgba(255,255,255,0.7)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                    <p style={{ margin: '8px 0 6px 0', fontWeight: 700, color: '#F4C778' }}>
+                  <div style={{ padding: '0 12px 12px 12px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                    <p style={{ margin: '8px 0 4px 0', fontWeight: 700, color: '#F4C778' }}>
                       🏔️ Hilly System Ratios (Ropani System):
                     </p>
-                    <ul style={{ paddingLeft: 12, margin: 0, lineHeight: 1.6 }}>
-                      <li><strong>1 Ropani</strong> = 16 Aana = 64 Paisa = 256 Daam = <strong>5,476 sq ft</strong> (508.74 m²)</li>
-                      <li><strong>1 Aana</strong> = 4 Paisa = 16 Daam = <strong>342.25 sq ft</strong> (31.80 m²)</li>
-                      <li><strong>1 Paisa</strong> = 4 Daam = <strong>85.56 sq ft</strong> (7.95 m²)</li>
-                      <li><strong>1 Daam</strong> = <strong>21.39 sq ft</strong> (1.99 m²)</li>
+                    <ul style={{ paddingLeft: 12, margin: 0, lineHeight: 1.5 }}>
+                      <li><strong>1 Ropani</strong> = 16 Aana = 64 Paisa = 256 Daam = <strong>5,476 sq ft</strong></li>
+                      <li><strong>1 Aana</strong> = 4 Paisa = 16 Daam = <strong>342.25 sq ft</strong></li>
+                      <li><strong>1 Paisa</strong> = 4 Daam = <strong>85.56 sq ft</strong></li>
+                      <li><strong>1 Daam</strong> = <strong>21.39 sq ft</strong></li>
                     </ul>
 
-                    <p style={{ margin: '12px 0 6px 0', fontWeight: 700, color: '#F4C778' }}>
+                    <p style={{ margin: '10px 0 4px 0', fontWeight: 700, color: '#F4C778' }}>
                       🌾 Terai System Ratios (Bigha System):
                     </p>
-                    <ul style={{ paddingLeft: 12, margin: 0, lineHeight: 1.6 }}>
-                      <li><strong>1 Bigha</strong> = 20 Kattha = 400 Dhur = <strong>72,900 sq ft</strong> (6,772.63 m²)</li>
-                      <li><strong>1 Kattha</strong> = 20 Dhur = <strong>3,645 sq ft</strong> (338.63 m²)</li>
-                      <li><strong>1 Dhur</strong> = <strong>182.25 sq ft</strong> (16.93 m²)</li>
+                    <ul style={{ paddingLeft: 12, margin: 0, lineHeight: 1.5 }}>
+                      <li><strong>1 Bigha</strong> = 20 Kattha = 400 Dhur = <strong>72,900 sq ft</strong></li>
+                      <li><strong>1 Kattha</strong> = 20 Dhur = <strong>3,645 sq ft</strong></li>
+                      <li><strong>1 Dhur</strong> = <strong>182.25 sq ft</strong></li>
                     </ul>
 
-                    <p style={{ margin: '10px 0 0 0', fontSize: '0.68rem', color: 'rgba(255,255,255,0.4)', italic: 'true' }}>
-                      * Standard measurements verified under Government of Nepal Department of Land Survey.
+                    <p style={{ margin: '8px 0 0 0', fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', italic: 'true' }}>
+                      * Standard measurements verified under Nepal Dept. of Land Survey.
                     </p>
                   </div>
                 )}
@@ -656,10 +788,10 @@ Calculated via Infinity Construction Land Converter.`;
 
             {/* Footer */}
             <div style={{
-              padding: '10px 18px',
+              padding: '8px 14px',
               background: 'rgba(0,0,0,0.3)',
               borderTop: '1px solid rgba(255,255,255,0.06)',
-              fontSize: '0.68rem',
+              fontSize: '0.66rem',
               color: 'rgba(255,255,255,0.4)',
               textAlign: 'center',
               display: 'flex',
@@ -678,3 +810,6 @@ Calculated via Infinity Construction Land Converter.`;
 };
 
 export default LandConverterWidget;
+
+
+
