@@ -666,19 +666,81 @@ const ChatWidget = () => {
 
   return (
     <>
-      <div style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 9999 }}>
+      {/* ── Responsive Chat Widget Styles ── */}
+      <style>{`
+        .chat-widget-anchor {
+          position: fixed;
+          bottom: 2rem;
+          right: 2rem;
+          z-index: 9999;
+        }
+
+        .chat-widget-drawer {
+          width: 410px;
+          height: 600px;
+          position: absolute;
+          bottom: calc(100% + 1rem);
+          right: 0;
+        }
+
+        .chat-widget-btn {
+          width: 64px;
+          height: 64px;
+        }
+
+        /* ── ≤768px tablet / large phone ── */
+        @media (max-width: 768px) {
+          .chat-widget-anchor {
+            bottom: 1.5rem;
+            right: 1rem;
+          }
+
+          .chat-widget-drawer {
+            width: calc(100vw - 2rem);
+            height: 75vh;
+            max-height: 560px;
+            right: 0;
+          }
+
+          .chat-widget-btn {
+            width: 56px;
+            height: 56px;
+          }
+        }
+
+        /* ── ≤425px small mobile ── */
+        @media (max-width: 425px) {
+          .chat-widget-anchor {
+            bottom: 1rem;
+            right: 0.5rem;
+          }
+
+          .chat-widget-drawer {
+            width: calc(100vw - 1rem);
+            height: 80vh;
+            max-height: 520px;
+            right: 0;
+          }
+
+          .chat-widget-btn {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      `}</style>
+
+      <div className="chat-widget-anchor">
 
         {/* ── Chat Window ── */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              className="chat-widget-drawer"
               initial={{ opacity: 0, y: 35, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 35, scale: 0.9 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               style={{
-                width: 410,
-                height: 600,
                 background: '#0d0e1c',
                 borderRadius: 24,
                 boxShadow: '0 24px 70px rgba(0, 0, 0, 0.45), 0 0 20px rgba(48,51,135,0.25)',
@@ -1022,6 +1084,7 @@ const ChatWidget = () => {
                 }}
               />
               <motion.button
+                className="chat-widget-btn"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0, opacity: 0 }}
@@ -1030,7 +1093,7 @@ const ChatWidget = () => {
                 transition={{ type: 'spring', stiffness: 350, damping: 20 }}
                 onClick={() => setIsOpen(true)}
                 style={{
-                  width: 64, height: 64, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.12)',
+                  borderRadius: '50%', border: '1px solid rgba(255,255,255,0.12)',
                   background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
                   color: 'var(--bg-white)', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
